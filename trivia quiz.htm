@@ -1,0 +1,291 @@
+<!doctype html> 
+<html> 
+<head>
+<meta charset="UTF-8">
+</head>
+<body onload="checkCookie()">
+  
+  <form name="myForm" id="myForm">
+   
+    <script type="text/javascript">
+    var questions = new Array();
+ 
+
+    //Question 1 
+    questions[0] = new Array();                      
+    questions[0][0] = "1";                          
+    questions[0][1] = "a";                         
+    questions[0][2] = "multipleChoice";           
+    questions[0][3] = "1. Who was the first president?"; 
+	questions[0][4] = "a. George Washington";              
+    questions[0][5] = "b. Barack Obama";           
+    questions[0][6] = "c. Thomas Jefferson";
+
+    //Question 2 
+    questions[1] = new Array();                      
+    questions[1][0] = "2";                          
+    questions[1][1] = "c";                         
+    questions[1][2] = "multipleChoice";           
+    questions[1][3] = "2. How many states are there?"; 
+    questions[1][4] = "a. 22";              
+    questions[1][5] = "b. 65";           
+    questions[1][6] = "c. 50"; 
+
+    //Question 3 
+    questions[2] = new Array();                      
+    questions[2][0] = "3";                          
+    questions[2][1] = "c";                         
+    questions[2][2] = "multipleChoice";           
+    questions[2][3] = "3. How many continents are there?"; 
+    questions[2][4] = "a. 12";             
+    questions[2][5] = "b. 9";  
+    questions[2][6] = "c. 7"; 
+
+    //Question 4 
+    questions[3] = new Array();                      
+    questions[3][0] = "4";                          
+    questions[3][1] = "c";                         
+    questions[3][2] = "multipleChoice";
+	questions[3][3] = "4. What is the maximum number of years a president can serve?"; 
+    questions[3][4] = "a. 12";              
+    questions[3][5] = "b. 5";                     
+    questions[3][6] = "c. 8"; 
+
+    //Question 5 
+    questions[4] = new Array();                      
+    questions[4][0] = "5";                          
+    questions[4][1] = "a";                         
+    questions[4][2] = "multipleChoice";           
+    questions[4][3] = "5. Who is the current president?"; 
+    questions[4][4] = "a. Donald Trump";             
+    questions[4][5] = "b. Shaquille O'neal";                     
+    questions[4][6] = "c. Neither"; 
+
+	 //Question 6 
+    questions[5] = new Array();                      
+    questions[5][0] = "6";                          
+    questions[5][1] = "b";                         
+    questions[5][2] = "multipleChoice";           
+    questions[5][3] = "6. What month are presidential elections held?"; 
+    questions[5][4] = "a. January";             
+    questions[5][5] = "b. November";                     
+    questions[5][6] = "c. August"; 
+		
+		
+	 //Question 7 
+    questions[6] = new Array();                      
+    questions[6][0] = "7";                          
+    questions[6][1] = "b";                         
+    questions[6][2] = "multipleChoice";           
+    questions[6][3] = "7. How many branches of government are there?"; 
+    questions[6][4] = "a. 5";             
+    questions[6][5] = "b. 3";                     
+    questions[6][6] = "c. 1"; 
+
+	//Question 8 
+    questions[7] = new Array();                      
+    questions[7][0] = "8";                          
+    questions[7][1] = "a";                         
+    questions[7][2] = "multipleChoice";           
+    questions[7][3] = "8. Which branch contains the courts?"; 
+    questions[7][4] = "a. Judicial";             
+    questions[7][5] = "b. Legislative";                     
+    questions[7][6] = "c. Executive"; 	
+		
+    //Question 9 
+    questions[8] = new Array();
+    questions[8][0] = "9"; 
+    questions[8][1] = "Puerto Rico";               
+    questions[8][2] = "fillBlank";            
+    questions[8][3] = "9. Name the largest U.S inhabited territory.";
+		
+    //Question 10 
+    questions[9] = new Array
+    questions[9][0] = "10";
+    questions[9][1] = "July 4th";                
+    questions[9][2] = "fillBlank";
+    questions[9][3] = "10. What date celebrates the signing of the Declaration of Independence? *NOTE - Written as Month xth or xst*";    
+
+/////
+
+     // Loop
+
+        for (a = 0; a < questions.length; a++)
+		{
+         renderQuestion(a);
+     }
+     
+
+       //mc function 
+     
+     function renderQuestion(i){
+         var questionName = "question" + i;
+         
+        if (questions[i][2] == "multipleChoice"){     
+    
+        document.write("<p>" + questions[i][3] + "</p>");   
+			
+        document.write("<input type='radio' id='" + 'a' + questions[i][0] + "' + name='" + questionName + "' value='" + questions[i][4] + "'>"  + questions[i][4] + "<br>");    
+			
+        document.write("<input type='radio' id='" + 'b' + questions[i][0] + "' + name='" + questionName + "' value='" + questions[i][5] + "'>"  + questions[i][5] + "<br>");
+			
+        document.write("<input type='radio' id='" + 'c' + questions[i][0] + "' + name='" + questionName + "' value='" + questions[i][6] + "'>"  + questions[i][6] + "<br>");
+    
+        }
+
+        if (questions[i][2] == "fillBlank"){     
+     
+    document.write("<p>" + questions[i][3] + "</p>"); 
+         
+    document.write("<input type='text' id='" + 'a' + questions[i][0] + "' + name='" + questionName + "'>" + "<br>" + "<br>");
+         
+        }
+
+
+     }
+
+     /////----
+   
+   //timer function   
+
+   function myFunction() {
+  var x = document.getElementById("mySelect").value;
+  document.getElementById("demo").innerHTML = "Timer is set: " + x + " Seconds";
+
+}
+
+
+
+//answer function
+    function testAnswers()
+		{
+         var userSelected = "";
+         correct = 0;           
+         incorrect = 0;         
+         
+         for (i = 0; i < questions.length; i++){
+             
+             if (questions[i][2] == "multipleChoice"){
+             var correctAnswer = questions[i][1]; 
+            // alert("Correct answer is " + correctAnswer);
+             
+             var myElement = "a" + (i + 1); //butons
+             
+             if(document.getElementById(myElement).checked == true){
+                 userSelected = "a";
+             }
+             
+             var myElement = "b" + (i + 1);
+             
+             if(document.getElementById(myElement).checked == true){
+                 userSelected = "b";
+             }
+             
+             var myElement = "c" + (i + 1);
+             
+             if(document.getElementById(myElement).checked == true){
+                 userSelected = "c";
+             }
+       
+
+             
+             if(userSelected == correctAnswer)
+                 correct++;
+             
+             else
+             incorrect++;
+             
+             
+            }  
+
+            // test fill blank answer
+
+            if (questions[i][2] == "fillBlank"){
+             var correctAnswer = questions[i][1]; 
+             var myElement = "a" + (i+1);      
+             if(document.getElementById(myElement).value == correctAnswer || document.getElementById(myElement).value == correctAnswer.toUpperCase()) {
+                     correct++;
+             } 
+             else{incorrect++;}
+             
+            }
+         
+         }
+    
+        ////--
+            
+   var finalScore = Math.round((correct / questions.length) * 100);
+   alert ("Scored " + finalScore + "%");
+             
+     } 
+
+     //--
+function createCookie(cookieName, cookieValue, daysToExpire)
+        {
+         var date = new Date();
+          date.setTime(date.getTime()+(daysToExpire*24*60*60*1000));
+          document.cookie = cookieName + "=" + cookieValue + "; expires=" + date.toGMTString();
+        }
+		function accessCookie(cookieName)
+        {
+          var name = cookieName + "=";
+          var allCookieArray = document.cookie.split(';');
+          for(var i=0; i<allCookieArray.length; i++)
+          {
+            var temp = allCookieArray[i].trim();
+            if (temp.indexOf(name)==0)
+            return temp.substring(name.length,temp.length);
+       	  }
+        	return "";
+        }
+		function checkCookie()
+        {
+          var user = accessCookie("testCookie");
+          if (user!="")
+        	alert("Nice to see you again" + user + ":)");
+          else
+          {
+            user = prompt("Your name?");
+            num = prompt("How long should we save your file?");
+            if (user!="" && user!=null)
+            {
+            createCookie("testCookie", user, num);
+            }
+          }
+		}					////---
+		
+</script>
+</form>
+    
+  
+   
+  
+
+    <p>
+        Number of Questions (*NOTE - You must answer min. of 5*) <br>
+        <select name="cboNoQuestions" size="1">
+            <option value="1">5</option>
+			<option value="2">6</option>
+			<option value="3">7</option>
+			<option value="4">8</option>
+			<option value="5">9</option>
+            <option value="6">10</option>
+        </select>
+   </p>
+
+        How long would you like to test?<br>
+            <select id="mySelect" onchange="myFunction()">
+               <option value="0">No Time Limit</option>
+               <option value="300">5 Minutes</option>
+				<option value="600">10 Minutes</option>
+            </select>
+            
+     
+        <p id="demo"></p>
+
+	
+    <input type="submit" onclick="return testAnswers()">
+    
+    
+</body>
+</html>
